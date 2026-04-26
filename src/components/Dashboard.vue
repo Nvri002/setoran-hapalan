@@ -47,13 +47,13 @@
               Cek Progress Setoran
             </h2>
             <p class="text-sm text-emerald-100/80 mb-4">
-              Masukkan NIM atau nama mahasiswa untuk melihat data hafalan
+              Masukkan NIM mahasiswa untuk melihat data hafalan
             </p>
 
             <div class="flex flex-col sm:flex-row gap-3">
               <SearchInput
                 :items="mahasiswaList"
-                placeholder="Ketik NIM atau nama mahasiswa..."
+                placeholder="Ketik NIM mahasiswa..."
                 :disabled="loading"
                 @select="onNimSelected"
               />
