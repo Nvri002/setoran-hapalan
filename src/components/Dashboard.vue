@@ -1,6 +1,5 @@
 <template>
   <div class="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
-    <!-- Header -->
     <header class="sticky top-0 z-40 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl
                    border-b border-slate-200/80 dark:border-slate-800/80 shadow-sm transition-colors duration-300">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
@@ -40,44 +39,41 @@
       </div>
     </header>
 
-    <!-- Main Content -->
     <div class="flex-1 flex justify-center">
       <div class="flex w-full max-w-7xl gap-6 px-4 sm:px-6 py-8">
         <main class="flex-1 min-w-0 space-y-6">
-<!-- Card Pencarian Hijau -->
-<div class="card p-5 bg-gradient-to-br from-emerald-600 to-teal-700 border-none shadow-xl shadow-emerald-500/20 text-white relative">
-  <h2 class="font-display text-xl font-bold mb-1">
-    Cek Progress Setoran
-  </h2>
-  <p class="text-sm text-emerald-100/80 mb-4">
-    Masukkan NIM atau nama mahasiswa untuk melihat data hafalan
-  </p>
+          <div class="card p-5 bg-gradient-to-br from-emerald-600 to-teal-700 border-none shadow-xl shadow-emerald-500/20 text-white relative">
+            <h2 class="font-display text-xl font-bold mb-1">
+              Cek Progress Setoran
+            </h2>
+            <p class="text-sm text-emerald-100/80 mb-4">
+              Masukkan NIM atau nama mahasiswa untuk melihat data hafalan
+            </p>
 
-  <div class="flex flex-col sm:flex-row gap-3">
-    <SearchInput
-      :items="mahasiswaList"
-      placeholder="Ketik NIM atau nama mahasiswa..."
-      :disabled="loading"
-      @select="onNimSelected"
-    />
-    <button
-      @click="onSearch()"
-      :disabled="loading || !nim.trim()"
-      class="bg-white text-emerald-700 font-bold px-5 py-2.5 rounded-xl hover:scale-105 active:scale-95 transition-all disabled:opacity-50 disabled:hover:scale-100 shadow-md whitespace-nowrap"
-    >
-      <span v-if="loading" class="flex items-center gap-2">
-        <svg class="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
-        </svg>
-        Mencari...
-      </span>
-      <span v-else>🔍 Cari Data</span>
-    </button>
-  </div>
-</div>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <SearchInput
+                :items="mahasiswaList"
+                placeholder="Ketik NIM atau nama mahasiswa..."
+                :disabled="loading"
+                @select="onNimSelected"
+              />
+              <button
+                @click="onSearch()"
+                :disabled="loading || !nim.trim()"
+                class="bg-white text-emerald-700 font-bold px-5 py-2.5 rounded-xl hover:scale-105 active:scale-95 transition-all disabled:opacity-50 disabled:hover:scale-100 shadow-md whitespace-nowrap"
+              >
+                <span v-if="loading" class="flex items-center gap-2">
+                  <svg class="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+                  </svg>
+                  Mencari...
+                </span>
+                <span v-else>🔍 Cari Data</span>
+              </button>
+            </div>
+          </div>
 
-          <!-- Error -->
           <transition name="scale">
             <div
               v-if="error"
@@ -97,14 +93,11 @@
             </div>
           </transition>
 
-          <!-- Loading Skeleton -->
           <div v-if="loading" class="mt-6">
             <SkeletonLoader />
           </div>
 
-          <!-- Data Mahasiswa -->
           <template v-else-if="data">
-            <!-- Statistik -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 animate-slide-up">
               <div class="card p-5 group hover:border-emerald-400 transition-all cursor-default relative overflow-hidden">
                 <p class="text-slate-400 text-[10px] font-bold uppercase tracking-wider">Total Wajib</p>
@@ -125,10 +118,8 @@
               </div>
             </div>
 
-            <!-- Profil Mahasiswa -->
             <MahasiswaProfile :info="info" :setoran-info="setoranInfo" class="mt-6" />
 
-            <!-- Daftar Surah -->
             <SurahList
               class="mt-6"
               :filtered-surah="filteredSurah"
@@ -147,7 +138,6 @@
               @delete="onDeleteRequest"
             />
 
-            <!-- Tombol Ganti Mahasiswa -->
             <div class="flex justify-center pt-8 pb-4">
               <button @click="handleClearData" class="btn-ghost text-xs gap-2 rounded-full bg-slate-100 dark:bg-slate-800">
                 <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -159,7 +149,6 @@
             </div>
           </template>
 
-          <!-- State Awal (sebelum cari) -->
           <div v-else-if="!searched" class="text-center py-20">
             <div class="w-20 h-20 bg-emerald-50 dark:bg-emerald-900/20 rounded-3xl flex items-center justify-center mx-auto mb-5 animate-float border border-emerald-100 dark:border-emerald-800/30">
               <span class="text-4xl">📚</span>
@@ -173,7 +162,6 @@
           </div>
         </main>
 
-        <!-- Side Panel Kanan -->
         <SidePanel
           :history="searchHistory"
           :dosen-info="dosenInfo"
@@ -183,14 +171,12 @@
       </div>
     </div>
 
-    <!-- Footer -->
     <footer class="py-6 text-center border-t border-slate-200/50 dark:border-slate-800/50 bg-white/30 dark:bg-slate-950/30 mt-auto">
       <p class="text-[10px] font-medium text-slate-400 uppercase tracking-widest">
         © {{ new Date().getFullYear() }} TIF UIN Suska Riau
       </p>
     </footer>
 
-    <!-- Modal Konfirmasi -->
     <ConfirmModal
       :show="confirmModal.show"
       :title="confirmModal.title"
@@ -218,10 +204,8 @@ import ConfirmModal     from './ConfirmModal.vue'
 import SidePanel        from './SidePanel.vue'
 import SearchInput      from './SearchInput.vue'
 
-/* ── Toast ── */
-const toast = useToast()
 
-/* ── Setoran ── */
+const toast = useToast()
 const {
   nim, data, loading, submitting, deleting, error, searched,
   selected, highlight, filterQuery, filterTab,
@@ -229,7 +213,6 @@ const {
   isDone, fetch, simpanSetoran, batalkanSetoran, clearData, toggleSelect,
 } = useSetoran(toast)
 
-/* ── Riwayat Pencarian ── */
 const searchHistory = ref([])
 
 function saveHistory(nimToSave) {
@@ -255,29 +238,24 @@ function handleClearData() {
   clearData()
 }
 
-/* ── Logout ── */
 function logout() {
   authService.clear()
   window.location.reload()
 }
 
-/* ── Daftar Mahasiswa dari API ── */
-const daftarMahasiswa = ref([])
-
 const dosenInfo = ref({ nama: '', nip: '', email: '' })
+const daftarMahasiswa = ref([])
 
 async function fetchMahasiswaPa() {
   try {
     const res = await dosenApi.getPaSaya()
     if (res.response && res.data) {
-      // Simpan data dosen
       dosenInfo.value = {
         nama: res.data.nama || '',
         nip: res.data.nip || '',
         email: res.data.email || ''
       }
 
-      // Simpan daftar mahasiswa
       if (res.data.info_mahasiswa_pa?.daftar_mahasiswa) {
         daftarMahasiswa.value = res.data.info_mahasiswa_pa.daftar_mahasiswa.map(m => ({
           nim: m.nim,
@@ -297,7 +275,6 @@ async function fetchMahasiswaPa() {
   }
 }
 
-/* ── Gabungan daftar mahasiswa (API + riwayat) ── */
 const mahasiswaList = computed(() => {
   const map = new Map()
   daftarMahasiswa.value.forEach(m => map.set(m.nim, { nim: m.nim, nama: m.nama }))
@@ -307,16 +284,27 @@ const mahasiswaList = computed(() => {
   return Array.from(map.values())
 })
 
-/* ── Pencarian ── */
+function isValidNim(nim) {
+  if (!nim) return false
+  if (!/^\d+$/.test(nim)) return false
+  if (nim.length < 8 || nim.length > 15) return false
+  return true
+}
+
 async function onSearch(nimValue) {
   const targetNim = typeof nimValue === 'string' ? nimValue.trim() : nim.value.trim()
   if (!targetNim) return
+  
+  if (!isValidNim(targetNim)) {
+    toast.error('NIM tidak valid', 'NIM harus berupa angka dengan panjang 8-15 digit.')
+    return
+  }
+
   selected.value.clear()
   try {
     await fetch(targetNim)
     if (!error.value) saveHistory(targetNim)
   } catch (e) {
-    // error sudah ditangani di useSetoran
   }
 }
 
@@ -329,7 +317,6 @@ function onSimpan() {
   simpanSetoran()
 }
 
-/* ── Modal Konfirmasi Hapus ── */
 const confirmModal = reactive({
   show: false, title: '', message: '', items: [],
 })
@@ -348,7 +335,6 @@ async function onConfirmDelete() {
   confirmModal.items = []
 }
 
-/* ── Mount ── */
 onMounted(() => {
   fetchMahasiswaPa()
 })

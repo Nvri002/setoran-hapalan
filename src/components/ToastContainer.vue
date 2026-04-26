@@ -12,16 +12,13 @@
             t.type === 'success' ? 'toast-success' :
             t.type === 'error'   ? 'toast-error'   : 'toast-info'
           ]">
-            <!-- Icon -->
             <span class="text-xl shrink-0 mt-0.5">
               {{ t.type === 'success' ? '✅' : t.type === 'error' ? '❌' : 'ℹ️' }}
             </span>
-            <!-- Content -->
             <div class="flex-1 min-w-0">
               <p class="font-semibold text-sm leading-tight">{{ t.title }}</p>
               <p v-if="t.message" class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 leading-snug">{{ t.message }}</p>
             </div>
-            <!-- Close -->
             <button
               @click="dismiss(t.id)"
               class="shrink-0 text-slate-300 hover:text-slate-500 dark:hover:text-slate-300 transition-colors ml-1"

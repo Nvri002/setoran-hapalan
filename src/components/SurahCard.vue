@@ -90,7 +90,7 @@ const tglSetor = computed(() => {
   if (!tgl) return ''
   try {
     const date = new Date(tgl)
-    if (isNaN(date.getTime())) return tgl   // fallback ke string asli
+    if (isNaN(date.getTime())) return tgl 
     return date.toLocaleDateString('id-ID', {
       day: 'numeric', month: 'short', year: 'numeric'
     })

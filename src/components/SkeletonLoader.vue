@@ -1,6 +1,5 @@
 <template>
   <div class="space-y-5 animate-fade-in">
-    <!-- Profile card skeleton -->
     <div class="card p-6">
       <div class="flex items-start gap-5">
         <div class="skeleton w-[72px] h-[72px] rounded-2xl shrink-0"></div>
@@ -22,7 +21,6 @@
       </div>
     </div>
 
-    <!-- Stats -->
     <div class="grid grid-cols-3 gap-3">
       <div v-for="i in 3" :key="i" class="card p-5 space-y-2">
         <div class="skeleton h-3 w-16"></div>
@@ -30,7 +28,6 @@
       </div>
     </div>
 
-    <!-- Surah grid -->
     <div class="card p-6">
       <div class="skeleton h-5 w-32 mb-5"></div>
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">

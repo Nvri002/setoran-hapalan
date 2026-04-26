@@ -1,6 +1,5 @@
 <template>
   <aside class="hidden xl:block w-72 shrink-0 space-y-5">
-    <!-- Profil Dosen -->
     <div
       v-if="dosenInfo && dosenInfo.nama"
       class="card p-5 bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/20 border-emerald-200 dark:border-emerald-800 animate-fade-in"
@@ -28,7 +27,6 @@
       </div>
     </div>
 
-    <!-- Riwayat Pencarian -->
     <div class="card p-5">
       <div class="flex items-center justify-between mb-4">
         <h3 class="font-display text-sm font-semibold text-slate-700 dark:text-slate-200">
@@ -71,7 +69,6 @@
       </ul>
     </div>
 
-    <!-- Tips -->
     <div class="card p-5 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20 border-amber-200 dark:border-amber-800">
       <h3 class="font-display text-sm font-semibold text-amber-800 dark:text-amber-200 mb-3 flex items-center gap-2">
         💡 Tips

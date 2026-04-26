@@ -1,7 +1,6 @@
 <template>
   <div class="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950 p-4 transition-colors">
     <div class="w-full max-w-sm">
-      <!-- Logo / Judul -->
       <div class="text-center mb-8">
         <div class="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-500/20"
              style="background: linear-gradient(135deg, #10b981, #047857)">
@@ -11,9 +10,7 @@
         <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Login untuk melanjutkan</p>
       </div>
 
-      <!-- Card Form -->
       <div class="card p-6 space-y-5">
-        <!-- Error -->
         <transition name="fade">
           <div v-if="error" class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-xl p-3 flex items-start gap-2 text-red-700 dark:text-red-400">
             <span class="text-sm">⚠️</span>
@@ -26,7 +23,6 @@
           </div>
         </transition>
 
-        <!-- Form -->
         <form @submit.prevent="handleLogin" class="space-y-4">
           <div>
             <label for="username" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1.5">Username</label>
@@ -68,7 +64,6 @@
           </button>
         </form>
 
-        <!-- Info -->
         <p class="text-[10px] text-slate-400 text-center">
           Gunakan akun Keycloak dev.tif.uin-suska.ac.id
         </p>

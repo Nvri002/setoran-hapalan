@@ -1,10 +1,7 @@
 <template>
   <div class="space-y-4 animate-slide-up">
-    <!-- Action bar -->
     <div class="card p-4 flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
-      <!-- Left: search + filter tabs -->
       <div class="flex flex-col sm:flex-row gap-2 flex-1 w-full sm:w-auto">
-        <!-- Search -->
         <div class="relative flex-1 min-w-0 max-w-xs">
           <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
@@ -17,7 +14,6 @@
           />
         </div>
 
-        <!-- Tabs -->
         <div class="flex bg-slate-100 dark:bg-slate-800 rounded-xl p-1 gap-1 shrink-0">
           <button
             v-for="tab in tabs" :key="tab.key"
@@ -36,7 +32,6 @@
         </div>
       </div>
 
-      <!-- Right: delete mode toggle + select all -->
       <div class="flex items-center gap-2 shrink-0">
         <button
           v-if="selected.size > 0"
@@ -60,7 +55,6 @@
       </div>
     </div>
 
-    <!-- Selection action bar -->
     <transition name="slide-down">
       <div
         v-if="selected.size > 0"
@@ -73,7 +67,7 @@
             <span class="text-primary-600 font-bold text-sm">{{ selected.size }}</span>
           </div>
           <p class="text-sm font-medium text-slate-700 dark:text-slate-200">
-            surah dipilih untuk disetorkan
+            Surah dipilih untuk disetorkan
           </p>
         </div>
         <button
@@ -93,7 +87,6 @@
       </div>
     </transition>
 
-    <!-- Surah Grid -->
     <div class="card p-5">
       <div class="flex items-center justify-between mb-4">
         <div>
@@ -105,7 +98,6 @@
             <span v-if="deleteMode" class="text-red-400 ml-2">• Hover card untuk tombol hapus</span>
           </p>
         </div>
-        <!-- Legend -->
         <div class="hidden sm:flex items-center gap-4">
           <div class="flex items-center gap-1.5">
             <div class="w-2.5 h-2.5 rounded-full bg-primary-400"></div>
@@ -122,7 +114,6 @@
         </div>
       </div>
 
-      <!-- Empty state -->
       <div v-if="filteredSurah.length === 0" class="py-16 text-center">
         <p class="text-4xl mb-3">🔍</p>
         <p class="text-slate-400 text-sm">Tidak ada surah yang cocok</p>

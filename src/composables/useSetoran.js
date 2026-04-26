@@ -3,25 +3,20 @@ import { ref, computed } from 'vue'
 import { setoranApi } from '../services/api.js'
 
 export function useSetoran(toast) {
-  /* ── State ── */
   const nim         = ref('')
-  const data        = ref(null)   // raw API response
+  const data        = ref(null)   
   const loading     = ref(false)
   const submitting  = ref(false)
   const deleting    = ref(false)
   const error       = ref(null)
   const searched    = ref(false)
-  const selected    = ref(new Set())  // id_surah selected for POST
-  const highlight   = ref(new Set())  // recently changed surah ids
+  const selected    = ref(new Set())  
+  const highlight   = ref(new Set())  
   const filterQuery = ref('')
-  const filterTab   = ref('all')      // all | done | pending
-  
-  // 🔥 FITUR BARU: State untuk sorting
-  const sortBy      = ref('nomor')    // nomor | nama | terbaru
+  const filterTab   = ref('all')      
+  const sortBy      = ref('nomor')    
 
-  /* ── Helpers (Dipindah ke atas agar bisa dipakai oleh computed) ── */
   function isDone(s) {
-    // Mengecek apakah surah sudah disetor berdasarkan berbagai kemungkinan struktur API
     return s.sudah_setor === true || s.sudah_setor === 1 ||
            s.status === 'setor'   || s.status === true ||
            (s.info_setoran !== null && s.info_setoran !== undefined)
@@ -36,12 +31,10 @@ export function useSetoran(toast) {
     setTimeout(() => ids.forEach(id => highlight.value.delete(id)), 2500)
   }
 
-  /* ── Derived / Computed ── */
   const info = computed(() => {
     const d = data.value
     if (!d) return null
 
-    // FIX DOSEN PA: Ekstrak nama jika formatnya object atau string JSON
     let namaDosen = '—'
     const rawDosen = d.dosen_pa || d.info?.dosen_pa
     
@@ -87,11 +80,9 @@ export function useSetoran(toast) {
   const filteredSurah = computed(() => {
     let list = [...allSurah.value]
 
-    // 1. Filter Tab
     if (filterTab.value === 'done')    list = list.filter(s => isDone(s))
     if (filterTab.value === 'pending') list = list.filter(s => !isDone(s))
 
-    // 2. Filter Search
     const q = filterQuery.value.trim().toLowerCase()
     if (q) list = list.filter(s =>
       (s.nama_latin || s.nama || '').toLowerCase().includes(q) ||
@@ -99,7 +90,6 @@ export function useSetoran(toast) {
       String(s.id || s.nomor || '').includes(q)
     )
 
-    // 🔥 FITUR BARU: Sorting
     return list.sort((a, b) => {
       if (sortBy.value === 'nama') {
         const nameA = a.nama_latin || a.nama || ''
@@ -111,17 +101,14 @@ export function useSetoran(toast) {
         const dateB = new Date(b.info_setoran?.tgl_setoran || 0)
         return dateB - dateA
       }
-      // Default: nomor/id
       return (parseInt(a.external_id || a.nomor || a.id) || 0) - (parseInt(b.external_id || b.nomor || b.id) || 0)
     })
   })
 
   const canPost = computed(() => selected.value.size > 0 && !submitting.value)
 
-  /* ── API Actions ── */
   async function fetch(nimVal) {
     const n = (nimVal || nim.value).trim()
-    if (!n) { error.value = 'Masukkan NIM terlebih dahulu.'; return }
     nim.value    = n
     loading.value = true
     error.value   = null

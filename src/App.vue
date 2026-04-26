@@ -22,15 +22,12 @@ async function checkAuth() {
     return
   }
 
-  // Cek apakah token sudah expired
   const expiry = parseInt(localStorage.getItem('sh_token_expiry') || '0')
   if (Date.now() >= expiry) {
-    // Token expired – coba refresh
     try {
       await authService.refresh()
       loggedIn.value = true
     } catch {
-      // Refresh gagal, paksa logout
       authService.clear()
       loggedIn.value = false
     }

@@ -120,7 +120,6 @@ const props = defineProps({
   setoranInfo: { type: Object, default: () => ({ total: 0, done: 0, pct: 0 }) },
 })
 
-// Fungsi asli dipertahankan
 const barWidth = ref('0%')
 function animateBar() {
   barWidth.value = '0%'
@@ -129,7 +128,6 @@ function animateBar() {
   })
 }
 
-// Fungsi pembuat inisial asli dipertahankan
 const initials = computed(() => {
   const n = props.info?.nama || ''
   return n.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase() || 'M'
