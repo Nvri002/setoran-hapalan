@@ -83,11 +83,12 @@ const dropdownStyle = ref({})
 
 const suggestions = computed(() => {
   const q = query.value.trim()
-  if (!q) return props.items.slice(0, 8)
-  return props.items.filter(item =>
-    item.nim.includes(q) ||
-    (item.nama || '').toLowerCase().includes(q.toLowerCase())
-  ).slice(0, 8)
+  const filtered = props.items.filter(item => {
+    if (!q) return true   
+    return item.nim.includes(q) ||
+           (item.nama || '').toLowerCase().includes(q.toLowerCase())
+  })
+  return filtered.slice(0, 50)
 })
 
 function filterNumeric(event) {

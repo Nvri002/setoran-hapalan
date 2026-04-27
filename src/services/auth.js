@@ -30,10 +30,10 @@ export const authService = {
       client_secret: CLIENT_SECRET,
       username,
       password,
-      scope: 'openid profile email'   // ✅ penting: samakan dengan Postman
+      scope: 'openid profile email'   
     })
 
-    console.log('[auth] login body:', body.toString())  // debug
+    console.log('[auth] login body:', body.toString())  
 
     const { data } = await authAxios.post(AUTH_URL, body, {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -57,7 +57,8 @@ export const authService = {
           }), { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
           this._save(data)
           return data
-        } catch { /* fallback */ }
+        } catch {       
+         }
       }
       this.clear()
       throw new Error('Session expired')
