@@ -67,7 +67,7 @@
       <div class="relative mt-8">
         <div class="flex items-end justify-between mb-2.5">
           <div>
-            <p class="text-sm font-bold text-slate-700 dark:text-slate-200">Progress Hafalan</p>
+            <p class="text-sm font-bold text-slate-700 dark:text-slate-200">Progress Hafalan {{ info.nama }} </p>
             <p class="text-xs font-medium text-slate-400 dark:text-slate-500 mt-0.5">
               {{ setoranInfo.done }} dari {{ setoranInfo.total }} surah
             </p>
